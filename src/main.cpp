@@ -1,2 +1,2 @@
 //pruebavisual
-//Go susti?
+//¿Go susti?
