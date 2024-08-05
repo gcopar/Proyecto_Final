@@ -54,3 +54,28 @@ void perfil(string visualizar, string editar, string menu, string opcion, estudi
 		}
 	}while(m!=0);
 }
+
+void visualizar(string nombre, string escuela, string correo, string telefono, string departamento, string provincia, string distrito, string direccion, string menu, string opcion, estudiante E[999){
+	int n;
+	cout<<"VISUALIZAR"<<endl;
+	cout<<nombre<<E[i].nombres<<endl;
+	cout<<escuela<<E[i].escuela<<endl;
+	cout<<correo<<E[i].correo_personal<<endl;
+	cout<<telefono<<E[i].telefono<<endl;
+	cout<<departamento<<E[i].departamento<<endl;
+	cout<<provincia<<E[i].provincia<<endl;
+	cout<<distrito<<E[i].distrito<<endl;
+	cout<<direccion<<E[i].direccion<<endl;
+	cout<<menu<<endl; 
+	cout<<opcion; cin>>n;
+	do{
+		switch(n){
+			case 0:
+				perfil("1. Visualizar", "2. Editar", "3. Menu anterior", "Ingrese una opcion: ", E[i]);
+				break;
+			default:
+    			cout<<"Opcion no valida, intentelo de nuevo.";
+    			break;
+		}
+	}while(n!=0);
+}
