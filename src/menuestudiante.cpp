@@ -43,7 +43,7 @@ void perfil(string visualizar, string editar, string menu, string opcion, estudi
 				visualizar("Nombre completo: ", "Escuela Profesional: ", "Correo personal: ", "Telefono: ", "Departamento: ", "Provincia: ", "Distrito: ", "Direccion: ", "0. Menu anterior", "Ingrese la opcion: ", E[i]);
 				break;
 			case 2:
-				editar("1. Nombre completo", "2. Escuela Profesional", "3. Correo personal", "4. Telefono", "5. Departamento", "6. Provincia", "7. Distrito", "8. Direccion", "0. Menu anterior", "Ingrese la opcion: ", E[i])				
+				editar("1. Nombre completo", "2. Escuela Profesional", "3. Correo personal", "4. Telefono", "5. Departamento", "6. Provincia", "7. Distrito", "8. Direccion", "0. Menu anterior", "Ingrese la opcion: ", E[i]);				
 				break;
 			case 0:
 				menuestudiantil("1. Perfil", "2. Matricula en linea", "3. Informacion academica", "4. Menu anterior", "Ingrese una opcion: ", E[i]);
@@ -55,7 +55,7 @@ void perfil(string visualizar, string editar, string menu, string opcion, estudi
 	}while(m!=0);
 }
 
-void visualizar(string nombre, string escuela, string correo, string telefono, string departamento, string provincia, string distrito, string direccion, string menu, string opcion, estudiante E[999){
+void visualizar(string nombre, string escuela, string correo, string telefono, string departamento, string provincia, string distrito, string direccion, string menu, string opcion, estudiante E[999]){
 	int n;
 	cout<<"VISUALIZAR"<<endl;
 	cout<<nombre<<E[i].nombres<<endl;
@@ -80,8 +80,9 @@ void visualizar(string nombre, string escuela, string correo, string telefono, s
 	}while(n!=0);
 }
 
-void editar(string correo, string telefono, string departamento, string provincia, string distrito, string direccion, string contrasena, string menu, string opcion, estudiante& E[999]){
+void editar(string correo, string telefono, string departamento, string provincia, string distrito, string direccion, string contrasena, string menu, string opcion, estudiante E[999]){
 	int n;
+    int i=0;
 	do{
 		cout<<"EDITAR"<<endl;
 		cout<<correo<<endl;
