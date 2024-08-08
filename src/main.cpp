@@ -1,2 +1,0 @@
-//pruebavisual
-//¿Go susti?
