@@ -30,6 +30,8 @@ void menu_login(){
                 system("cls");
                 buscador = 1;
                 controlador =1;
+                menu_admin();
+
             }else{
                 intento = 1;
                 cout<<"La contraseña es incorrecta"<<endl;
@@ -45,6 +47,7 @@ void menu_login(){
                         buscador = 1;
                         controlador =1;
                         intento = 3;
+                        menu_admin();
                     }else{
                         intento++;
                         system("cls");
@@ -73,7 +76,6 @@ void menu_login(){
         }
 
     } while (controlador == 0);
-    cout<<"Se termino";
 }
 
 void menu_alumno(){
@@ -81,5 +83,31 @@ void menu_alumno(){
 }
 
 void menu_admin(){
-    cout<<"Menu admin"<<endl;
+    int opcion_adm, control_adm = 0, totaluser;
+
+    do
+    {
+        cout<<"------------- MENU ADMIN -------------"<<endl;
+        cout<<"1. Agregar usuario"<<endl;
+        cout<<"2. Ver usuario"<<endl;
+        cout<<"Ingresa una opcion: "; cin>>opcion_adm;
+        cin.ignore(1000, '\n');
+        switch (opcion_adm)
+        {
+        case 1:
+            registrarUsuarios();
+            break;
+    
+        case 2:
+            inicializarCurso();
+            inicializarNota();
+            inicializarAsistencia();
+            verUsuarios();
+            break;
+        default:
+            break;
+            control_adm = 1;
+        }
+    } while (control_adm == 0);
+    cout<<"Se termino";
 }

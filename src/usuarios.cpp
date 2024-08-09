@@ -11,6 +11,7 @@ using namespace std;
 
 Alumno alumno[20]; //Ya declare el array con la estructura Alumno
 Admin administrador[10]; //Ya declare el array con la estructura Admin
+int cantuser = 0;
 
 void inicializarUsuario(){
     //Guardamos los datos del primer usuario y administrador
@@ -29,21 +30,22 @@ void inicializarUsuario(){
 
 void registrarUsuarios(){
     cout<<"Ingrese los datos del usuario: "<<endl;
-    cout<<"Nombres: "; getline(cin,alumno[0].usuario.nombres);
-    cout<<"Apellidos: "; getline(cin,alumno[0].usuario.apellidos);
-    cout<<"DNI: "; cin>>alumno[0].usuario.DNI;
-    cout<<"Correo: "; cin>>alumno[0].usuario.correo;
-    cout<<"Número de celular: "; cin>>alumno[0].usuario.numcelular;
-    cout<<"Nombre de usuario: "; cin>>alumno[0].usuario.user;
-    cout<<"Contraseña: "; cin>>alumno[0].usuario.contrasena;
-    cout<<"Codigo de matricula: "; cin>>alumno[0].matricula;
+    cout<<"\tNombres: "; getline(cin,alumno[cantuser].usuario.nombres);
+    cout<<"\tApellidos: "; getline(cin,alumno[cantuser].usuario.apellidos);
+    cout<<"\tDNI: "; cin>>alumno[cantuser].usuario.DNI;
+    cout<<"\tCorreo: "; cin>>alumno[cantuser].usuario.correo;
+    cout<<"\tNúmero de celular: "; cin>>alumno[cantuser].usuario.numcelular;
+    cout<<"\tNombre de usuario: "; cin>>alumno[cantuser].usuario.user;
+    cout<<"\tContraseña: "; cin>>alumno[cantuser].usuario.contrasena;
+    cout<<"\tCodigo de matricula: "; cin>>alumno[cantuser].matricula;
+    cantuser++;
 }
 
 void verUsuarios(){
     double Parcial_1, Parcial_2;
     int PromFinal;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < cantuser; i++)
     {
         cout<<i+1<<" persona: "<<endl;
         cout<<"\tNombres: "<<alumno[i].usuario.nombres<<endl;
