@@ -91,6 +91,7 @@ void menu_admin(){
         cout<<"1. Agregar usuario"<<endl;
         cout<<"2. Agregar notas"<<endl;
         cout<<"3. Ver usuario"<<endl;
+        cout<<"4. Buscar alumno"<<endl;
         cout<<"Ingresa una opcion: "; cin>>opcion_adm;
 
         cin.ignore(1000, '\n');
@@ -108,6 +109,9 @@ void menu_admin(){
             inicializarCurso();
             inicializarAsistencia();
             verUsuarios();
+            break;
+        case 4:
+            verUsuariosDetalle();
             break;
         default:
             control_adm = 1;

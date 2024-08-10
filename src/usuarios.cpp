@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-
+#include <cstring>
 using namespace std;
 
 Alumno alumno[20]; //Ya declare el array con la estructura Alumno
@@ -85,49 +85,79 @@ void registrarNotas(int id, int posicion){
 }
 
 void verUsuarios(){
-    double Parcial_1, Parcial_2;
-    int PromFinal;
     if (cantuser == 0)
     {
-        cout<<"---------- LLISTA DE ALUMNOS ----------"<<endl;
+        cout<<"---------- LISTA DE ALUMNOS ----------"<<endl;
         cout<<"\nNo hay alumnos registrados.\n"<<endl;
         system("pause");
         system("cls");
     }else{
+        cout<<"---------- LISTA DE ALUMNOS ----------"<<endl;
         for (int i = 0; i < cantuser; i++)
         {
-            cout<<i+1<<" persona: "<<endl;
-            cout<<"\tNombres: "<<alumno[i].usuario.nombres<<endl;
-            cout<<"\tApellidos: "<<alumno[i].usuario.apellidos<<endl;
-            cout<<"\tDNI: "<<alumno[i].usuario.DNI<<endl;
-            cout<<"\tCorreo: "<<alumno[i].usuario.correo<<endl;
-            cout<<"\tNúmero de celular: "<<alumno[i].usuario.numcelular<<endl;
-            cout<<"\tNombre de usuario: "<<alumno[i].usuario.user<<endl;
-            cout<<"\tContraseña: "<<alumno[i].usuario.contrasena<<endl;
+            cout<<"Alumno Nº "<<i+1<<": "<<endl;
+            cout<<"\tNombres y Apellidos: "<<alumno[i].usuario.nombres<<" "<<alumno[i].usuario.apellidos<<endl;
             cout<<"\tCodigo de matricula: "<<alumno[i].matricula<<endl;
-            cout<<"\tCursos: "<<endl;
-        
-            for (int j = 0; j < 8; j++)
-            {
-                alumno[i].cursos[j].nombre_curso = curso[j].nombre_curso;
-                Parcial_1 = calcularParcial1(i, j);
-                Parcial_2 = calcularParcial2(i, j);
-                PromFinal = calcularNotaFinal(Parcial_1, Parcial_2);
+        }
+    }
+}
 
-                cout<<"\t\tNombre del curso: "<<alumno[i].cursos[j].nombre_curso<<endl;
-                cout<<fixed<<"\t\tNota del I Parcial del curso: "<<setprecision(2)<<Parcial_1<<endl;
-                cout<<fixed<<"\t\tNota del II Parcial del curso: "<<setprecision(2)<<Parcial_2<<endl;
-                cout<<"\t\tNota Final del curso: "<<PromFinal<<endl;
-            }
+void verUsuariosDetalle(){
+    double Parcial_1, Parcial_2;
+    int PromFinal, opcion_userDetalle, control_userDetalle;
+    char userDetalle_matricula[40], userDetalle_usuario[40], userDetalle_nombres[40];
+    do
+    {
+        control_userDetalle = 1;
+        cout<<"---------- BUSCAR ALUMNO ----------"<<endl;
+        cout<<"1. Buscar por codigo de matricula."<<endl;
+        cout<<"2. Buscar por usuario."<<endl;
+        cout<<"3. Buscar por nombre y apellido completo."<<endl;
+        cout<<"Ingresa la opcion: "; cin>>opcion_userDetalle;
+        system("cls");
+        switch (opcion_userDetalle)
+        {
+        case 1:
+            cout<<"Ingresa el codigo de matricula: "; cin.getline(userDetalle_matricula, 40);
+            
+            break;
+        case 2:
+            cout<<"Ingresa el nombre de usuario: "; cin.getline(userDetalle_usuario, 40);
+            break;
+        case 3:
+            cout<<"Ingresa el nombre y apellido completo: "; cin.getline(userDetalle_nombres, 40);
+            break;
+        default:
+            break;
+        }
+
+
+    } while (control_userDetalle == 1);
+    
+    
+
+    for (int i = 0; i < cantuser; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            alumno[i].cursos[j].nombre_curso = curso[j].nombre_curso;
+            Parcial_1 = calcularParcial1(i, j);
+            Parcial_2 = calcularParcial2(i, j);
+            PromFinal = calcularNotaFinal(Parcial_1, Parcial_2);
+
+            cout<<"\t\tNombre del curso: "<<alumno[i].cursos[j].nombre_curso<<endl;
+            cout<<fixed<<"\t\tNota del I Parcial del curso: "<<setprecision(2)<<Parcial_1<<endl;
+            cout<<fixed<<"\t\tNota del II Parcial del curso: "<<setprecision(2)<<Parcial_2<<endl;
+            cout<<"\t\tNota Final del curso: "<<PromFinal<<endl;
+        }
 
             cout<<"\tAsistencias: "<<endl;
 
-            for (int j = 0; j < 2; j++)
-            {
+        for (int j = 0; j < 2; j++)
+        {
                 cout<<"\t\tSemana "<<alumno[i].asistencias[j].semama<<endl;
                 cout<<"\t\tClase "<<j+1<<": "<<alumno[i].asistencias[j].clase[0]<<endl;
                 cout<<"\t\tClase "<<j+2<<": "<<alumno[i].asistencias[j].clase[1]<<endl;
-            }
         }
     }
 }

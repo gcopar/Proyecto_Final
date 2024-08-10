@@ -53,5 +53,6 @@ void registrarNotas(int id, int posicion);
 void verUsuarios();
 void inicializarNota(); //Solo se creeo para testear
 void inicializarAsistencia();
+void verUsuariosDetalle();
 
 #endif
