@@ -89,24 +89,29 @@ void menu_admin(){
     {
         cout<<"------------- MENU ADMIN -------------"<<endl;
         cout<<"1. Agregar usuario"<<endl;
-        cout<<"2. Ver usuario"<<endl;
+        cout<<"2. Agregar notas"<<endl;
+        cout<<"3. Ver usuario"<<endl;
         cout<<"Ingresa una opcion: "; cin>>opcion_adm;
+
         cin.ignore(1000, '\n');
+        system("cls");
+        
         switch (opcion_adm)
         {
         case 1:
             registrarUsuarios();
             break;
-    
         case 2:
+            registrarNotas(1, 0);
+            break;
+        case 3:
             inicializarCurso();
-            inicializarNota();
             inicializarAsistencia();
             verUsuarios();
             break;
         default:
-            break;
             control_adm = 1;
+            break;
         }
     } while (control_adm == 0);
     cout<<"Se termino";
