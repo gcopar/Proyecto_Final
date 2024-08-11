@@ -106,8 +106,9 @@ void verUsuarios(){
 
 void verUsuariosDetalle(){
     double Parcial_1, Parcial_2;
-    int PromFinal, opcion_userDetalle, control_userDetalle, control_buscarcodigo, b;
-    char userDetalle_matricula[40], userDetalle_usuario[40], userDetalle_nombres[40];
+    int PromFinal, opcion_userDetalle, control_userDetalle, control_buscarAlumno, b;
+    char userDetalle_matricula[40], userDetalle_usuario[40], userDetalle_nombres[40], nombreCompleto[80];
+
     do
     {
         control_userDetalle = 1;
@@ -122,7 +123,7 @@ void verUsuariosDetalle(){
         switch (opcion_userDetalle)
         {
         case 1:
-            control_buscarcodigo = 0;
+            control_buscarAlumno = 0;
             b = 0;
             cout<<"Ingresa el codigo de matricula: "; cin.getline(userDetalle_matricula, 40);
             system("cls");
@@ -130,7 +131,7 @@ void verUsuariosDetalle(){
             {
                 if (strcmp(userDetalle_matricula, alumno[b].matricula.c_str()) == 0)
                 {
-                    control_buscarcodigo = 1;
+                    control_buscarAlumno = 1;
                     cout<<"---------- RESULTADO DE BUSQUEDA ----------"<<endl;
                     cout<<"\n\tNombres: "<<alumno[b].usuario.nombres<<endl;
                     cout<<"\tApellidos: "<<alumno[b].usuario.apellidos<<endl;
@@ -143,22 +144,86 @@ void verUsuariosDetalle(){
                 }else{
                     b++;
                 }
-            } while (control_buscarcodigo != 1 and b < cantuser);
+            } while (control_buscarAlumno != 1 and b < cantuser);
 
             if (b == cantuser)
             {
-                cout<<"No se pudo encontrar nada."<<endl;
+                cout<<"No se pudo encontrar nada. \n"<<endl;
+                system("pause");
+                system("cls");
             }
             break;
         case 2:
+            control_buscarAlumno = 0;
+            b = 0;
             cout<<"Ingresa el nombre de usuario: "; cin.getline(userDetalle_usuario, 40);
-            
+            system("cls");
+            do
+            {
+                if (strcmp(userDetalle_usuario, alumno[b].usuario.user.c_str()) == 0)
+                {
+                    control_buscarAlumno = 1;
+                    cout<<"---------- RESULTADO DE BUSQUEDA ----------"<<endl;
+                    cout<<"\n\tNombres: "<<alumno[b].usuario.nombres<<endl;
+                    cout<<"\tApellidos: "<<alumno[b].usuario.apellidos<<endl;
+                    cout<<"\tDNI: "<<alumno[b].usuario.DNI<<endl;
+                    cout<<"\tCorreo: "<<alumno[b].usuario.correo<<endl;
+                    cout<<"\tNúmero de celular: "<<alumno[b].usuario.numcelular<<endl;
+                    cout<<"\tCodigo de matricula: "<<alumno[b].matricula<<"\n"<<endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                    b++;
+                }
+            } while (control_buscarAlumno != 1 and b < cantuser);
+
+            if (b == cantuser)
+            {
+                cout<<"No se pudo encontrar nada. \n"<<endl;
+                system("pause");
+                system("cls");
+            }
             break;
         case 3:
+            control_buscarAlumno = 0;
+            b = 0;
             cout<<"Ingresa el nombre y apellido completo: "; cin.getline(userDetalle_nombres, 40);
+            system("cls");
+            do
+            {
+                const char* nombres = alumno[b].usuario.nombres.c_str();
+                const char* apellidos = alumno[b].usuario.apellidos.c_str();
+
+                strcpy(nombreCompleto, nombres);
+                strcat(nombreCompleto, " ");
+                strcat(nombreCompleto, apellidos);
+                if (strcmp(userDetalle_nombres, nombreCompleto) == 0)
+                {
+                    control_buscarAlumno = 1;
+                    cout<<"---------- RESULTADO DE BUSQUEDA ----------"<<endl;
+                    cout<<"\n\tNombres: "<<alumno[b].usuario.nombres<<endl;
+                    cout<<"\tApellidos: "<<alumno[b].usuario.apellidos<<endl;
+                    cout<<"\tDNI: "<<alumno[b].usuario.DNI<<endl;
+                    cout<<"\tCorreo: "<<alumno[b].usuario.correo<<endl;
+                    cout<<"\tNúmero de celular: "<<alumno[b].usuario.numcelular<<endl;
+                    cout<<"\tCodigo de matricula: "<<alumno[b].matricula<<"\n"<<endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                    b++;
+                }
+            } while (control_buscarAlumno != 1 and b < cantuser);
+
+            if (b == cantuser)
+            {
+                cout<<"No se pudo encontrar nada. \n"<<endl;
+                system("pause");
+                system("cls");
+            }
             break;
         case 4:
             control_userDetalle = 0;
+            system("cls");
             break;
         default:
             cout<<"Ingrese una de las opciones."<<"\n"<<endl;
