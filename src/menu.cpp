@@ -11,7 +11,7 @@ using namespace std;
 void menu_login(){
     char usuario_is[40], contrasena_is[40];
     int controlador = 0, intento, buscador, b;
-    inicializarUsuario();
+    inicializarUsuario(); //Aqui se tiene informacion del administrador, el primer y unico usuario inicial
     
     do
     {
@@ -92,6 +92,7 @@ void menu_admin(){
         cout<<"2. Agregar notas"<<endl;
         cout<<"3. Ver usuario"<<endl;
         cout<<"4. Buscar alumno"<<endl;
+        cout<<"5. Salir"<<endl;
         cout<<"Ingresa una opcion: "; cin>>opcion_adm;
 
         cin.ignore(1000, '\n');
@@ -108,15 +109,20 @@ void menu_admin(){
             registrarNotas(1, 0);
             break;
         case 3:
-            inicializarCurso();
-            inicializarAsistencia();
             verUsuarios();
             break;
         case 4:
-            verUsuariosDetalle();
+            buscarUsuarioDetalles();
+            break;
+        case 5:
+            control_adm = 1;
+            system("cls");
+            menu_login();
             break;
         default:
-            control_adm = 1;
+            cout<<"Ingresa una opcion valida.\n"<<endl;
+            system("pause");
+            system("cls");
             break;
         }
     } while (control_adm == 0);
