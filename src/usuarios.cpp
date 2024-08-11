@@ -97,14 +97,16 @@ void verUsuarios(){
         {
             cout<<"Alumno Nº "<<i+1<<": "<<endl;
             cout<<"\tNombres y Apellidos: "<<alumno[i].usuario.nombres<<" "<<alumno[i].usuario.apellidos<<endl;
-            cout<<"\tCodigo de matricula: "<<alumno[i].matricula<<endl;
+            cout<<"\tCodigo de matricula: "<<alumno[i].matricula<<"\n"<<endl;
         }
+        system("pause");
+        system("cls");
     }
 }
 
 void verUsuariosDetalle(){
     double Parcial_1, Parcial_2;
-    int PromFinal, opcion_userDetalle, control_userDetalle;
+    int PromFinal, opcion_userDetalle, control_userDetalle, control_buscarcodigo, b;
     char userDetalle_matricula[40], userDetalle_usuario[40], userDetalle_nombres[40];
     do
     {
@@ -113,53 +115,58 @@ void verUsuariosDetalle(){
         cout<<"1. Buscar por codigo de matricula."<<endl;
         cout<<"2. Buscar por usuario."<<endl;
         cout<<"3. Buscar por nombre y apellido completo."<<endl;
+        cout<<"4. Salir"<<endl;
         cout<<"Ingresa la opcion: "; cin>>opcion_userDetalle;
         system("cls");
+        cin.ignore(1000, '\n');
         switch (opcion_userDetalle)
         {
         case 1:
+            control_buscarcodigo = 0;
+            b = 0;
             cout<<"Ingresa el codigo de matricula: "; cin.getline(userDetalle_matricula, 40);
-            
+            system("cls");
+            do
+            {
+                if (strcmp(userDetalle_matricula, alumno[b].matricula.c_str()) == 0)
+                {
+                    control_buscarcodigo = 1;
+                    cout<<"---------- RESULTADO DE BUSQUEDA ----------"<<endl;
+                    cout<<"\n\tNombres: "<<alumno[b].usuario.nombres<<endl;
+                    cout<<"\tApellidos: "<<alumno[b].usuario.apellidos<<endl;
+                    cout<<"\tDNI: "<<alumno[b].usuario.DNI<<endl;
+                    cout<<"\tCorreo: "<<alumno[b].usuario.correo<<endl;
+                    cout<<"\tNúmero de celular: "<<alumno[b].usuario.numcelular<<endl;
+                    cout<<"\tCodigo de matricula: "<<alumno[b].matricula<<"\n"<<endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                    b++;
+                }
+            } while (control_buscarcodigo != 1 and b < cantuser);
+
+            if (b == cantuser)
+            {
+                cout<<"No se pudo encontrar nada."<<endl;
+            }
             break;
         case 2:
             cout<<"Ingresa el nombre de usuario: "; cin.getline(userDetalle_usuario, 40);
+            
             break;
         case 3:
             cout<<"Ingresa el nombre y apellido completo: "; cin.getline(userDetalle_nombres, 40);
             break;
+        case 4:
+            control_userDetalle = 0;
+            break;
         default:
+            cout<<"Ingrese una de las opciones."<<"\n"<<endl;
+            system("pause");
+            system("cls");
             break;
         }
-
-
     } while (control_userDetalle == 1);
-    
-    
-
-    for (int i = 0; i < cantuser; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            alumno[i].cursos[j].nombre_curso = curso[j].nombre_curso;
-            Parcial_1 = calcularParcial1(i, j);
-            Parcial_2 = calcularParcial2(i, j);
-            PromFinal = calcularNotaFinal(Parcial_1, Parcial_2);
-
-            cout<<"\t\tNombre del curso: "<<alumno[i].cursos[j].nombre_curso<<endl;
-            cout<<fixed<<"\t\tNota del I Parcial del curso: "<<setprecision(2)<<Parcial_1<<endl;
-            cout<<fixed<<"\t\tNota del II Parcial del curso: "<<setprecision(2)<<Parcial_2<<endl;
-            cout<<"\t\tNota Final del curso: "<<PromFinal<<endl;
-        }
-
-            cout<<"\tAsistencias: "<<endl;
-
-        for (int j = 0; j < 2; j++)
-        {
-                cout<<"\t\tSemana "<<alumno[i].asistencias[j].semama<<endl;
-                cout<<"\t\tClase "<<j+1<<": "<<alumno[i].asistencias[j].clase[0]<<endl;
-                cout<<"\t\tClase "<<j+2<<": "<<alumno[i].asistencias[j].clase[1]<<endl;
-        }
-    }
 }
 
 //Solo se creo para testear

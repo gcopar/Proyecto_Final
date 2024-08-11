@@ -101,6 +101,8 @@ void menu_admin(){
         {
         case 1:
             registrarUsuarios();
+            system("pause");
+            system("cls");
             break;
         case 2:
             registrarNotas(1, 0);
